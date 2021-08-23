@@ -1,0 +1,39 @@
+﻿@{
+    var dsSanPhamLienQuan = (List<CuaHangBanMoHinh.Models.EL.MOHINH>)ViewBag.SanPhamLienQuan;
+}
+<script src="~/Content/script.js"></script>
+<hr class="sidebar-divider">
+<div class="container">
+    <h3><a href="#" style="font-weight:inherit; ">Sản phẩm liên quan</a></h3>
+    @{ int j = 0;}
+    @foreach (var mohinh in dsSanPhamLienQuan)
+    {
+        j++;
+        if (j % 3 == 0)
+        {
+            @:<div class="col-sm-4 col-md-3 col-lg-3 col-xs-5 hidden-xs">
+            }
+            else
+            {
+                @:<div class="col-sm-4 col-md-3 col-lg-3 col-xs-6">
+                }
+                <div class="thumbnail">
+                    <img src="~/Images/HinhLon/@mohinh.HinhLon" alt="Thumbnail Image 1" class="img-responsive img-rounded imgbook " style="width: 300px;">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <h5 style=" text-align: center;width: 100%;overflow: hidden;white-space: nowrap;text-overflow: ellipsis;">
+                            <a href="@Url.Action("ChiTietMoHinh", "MoHinh", new { id = mohinh.MaMH }) ">@mohinh.TenMH</a>
+                        </h5>
+                        <p style="text-align:center; color:darkslategrey; font-size:14px;">@Html.FormatValue(mohinh.GiaBan, "{0:#,###,##0}") VNĐ</p>
+                        <p style="text-align: center;">
+                            <a href="@Url.Action("ThemGioHang","GioHang", new { mamh = mohinh.MaMH, url = Request.Url.ToString() })" class="btn btn-primary" role="button">
+                                <span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span>
+                            </a>
+                        </p>
+
+                    </div>
+                </div>
+            @:</div>
+        }
+</div>
+
+</div>

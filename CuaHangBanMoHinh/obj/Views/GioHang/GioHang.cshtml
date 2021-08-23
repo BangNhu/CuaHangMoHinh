@@ -1,0 +1,145 @@
+﻿@using CuaHangBanMoHinh.Models
+@{
+    ViewBag.Title = "GioHang";
+    Layout = "~/Views/Shared/_LayoutUser.cshtml";
+}
+
+
+<!------ Include the above in your HEAD tag ---------->
+<style>
+    .bloc_left_price {
+        color: #c01508;
+        text-align: center;
+        font-weight: bold;
+        font-size: 150%;
+    }
+
+    .category_block li:hover {
+        background-color: #007bff;
+    }
+
+        .category_block li:hover a {
+            color: #ffffff;
+        }
+
+    .category_block li a {
+        color: #343a40;
+    }
+
+    .add_to_cart_block .price {
+        color: #c01508;
+        text-align: center;
+        font-weight: bold;
+        font-size: 200%;
+        margin-bottom: 0;
+    }
+
+    .add_to_cart_block .price_discounted {
+        color: #343a40;
+        text-align: center;
+        text-decoration: line-through;
+        font-size: 140%;
+    }
+
+    .product_rassurance {
+        padding: 10px;
+        margin-top: 15px;
+        background: #ffffff;
+        border: 1px solid #6c757d;
+        color: #6c757d;
+    }
+
+        .product_rassurance .list-inline {
+            margin-bottom: 0;
+            text-transform: uppercase;
+            text-align: center;
+        }
+
+            .product_rassurance .list-inline li:hover {
+                color: #343a40;
+            }
+
+    .reviews_product .fa-star {
+        color: gold;
+    }
+
+    .pagination {
+        margin-top: 20px;
+    }
+
+    footer {
+        background: #343a40;
+        padding: 40px;
+    }
+
+        footer a {
+            color: #f8f9fa !important
+        }
+</style>
+
+<div class="container mb-4">
+    <h3 style="text-align:center;font-weight:bold;">GIỎ HÀNG CỦA BẠN</h3>
+    <div class="row">
+        <div class="col-12">
+            <div class="table-responsive">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th scope="col">Ảnh</th>
+                            <th scope="col">Tên mô hình</th>
+                            <th scope="col" class="text-center">Số lượng</th>
+                            <th scope="col" class="text-right">Giá</th>
+                            <th scope="col" class="text-right">Thành Tiền</th>
+                            <th> </th>
+                            <th> </th>
+                            <th> </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td><img src="~/Images/HinhLon/@item.sAnh" style="width:50px;" /> </td>
+                                <td>@item.sTenMH</td>
+                                @using (Html.BeginForm("CapNhatGioHang", "GioHang", new { iMaMH = item.iMaMH }))
+                                {
+                                    <td><input type="number" class="form-control" min="1" name="txtSoLuong" value="@item.iSoLuong" /></td>
+                                    <td class="text-right">@string.Format("{0:#,##0,0}", item.dDonGia)</td>
+                                    <td class="text-right">@string.Format("{0:#,##0,0}", item.dThanhTien)</td>
+                                    <td class="text-right"><input class="btn btn-warning" type="submit" value="Cập nhật" /></td>
+                                    <td class="text-right">
+                                        <button class="btn btn-info" href="@Url.Action("ChiTietSanPham","SachOnline", new { id =item.iMaMH})">Chi tiết</button>
+                                    </td>
+                                    <td class="text-right">
+                                        <button class="btn btn-sm btn-danger" style="text-decoration:none; color:white;">@Html.ActionLink("Xóa", "XoaSPKhoiGioHang", new { @iMaMH = item.iMaMH })</button>
+                                    </td>
+
+                                }
+                            </tr>
+
+                        }
+
+                    </tbody>
+                </table>
+                <div class="right" style="text-align:center">
+                    <button class="btn btn-secondary" style="text-decoration:none; color:white; font-size:16px;">@Html.ActionLink("Xóa hết giỏ hàng", "XoaGioHang")</button>
+
+                </div>
+                <br />
+            </div>
+        </div>
+        <div class="col mb-2">
+            <div class="row">
+                <div class="col-sm-12  col-md-6">
+                    <button class="btn btn-block btn-light">Continue Shopping</button>
+                </div>
+                <div class="col-sm-12 col-md-6 text-right">
+                    <button class="btn btn-lg btn-block btn-success text-uppercase">@Html.ActionLink("ĐẶT HÀNG", "DatHang", "GioHang")</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Footer -->

@@ -1,0 +1,56 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutUser.cshtml";
+}
+
+@model CuaHangBanMoHinh.Models.ViewModel.ContactViewModel
+@{ ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutUser.cshtml";
+    <style>
+        .validation {
+            color: red;
+        }
+    </style>
+}
+
+<!--contact-start-->
+<div style="height: 500px">
+    <div class="contact col-lg-7 col-md-7" >
+        <div class="container col-lg-10 col-md-10">
+            <div class="contact-text">
+                
+                <div class="col-md-12 contact-right">
+                    
+                    <form class="well form-horizontal" action="Contact" method="post">
+                        <h2 style="text-align:center">Liên hệ</h2>
+                        @Html.ValidationMessageFor(m => m.Phone, "", new { @class = "validation" })
+                        <br />
+                        @Html.ValidationMessageFor(m => m.Email, "", new { @class = "validation" })
+                        <br />
+                        @Html.TextBoxFor(m => m.Name, new { placeholder = "Họ và tên", required = "", @class = "form-control" })
+                        <br />
+                        @Html.TextBoxFor(m => m.Phone, new { placeholder = "Số điện thoại", required = "", @class = "form-control" })
+                        <br />
+                        @Html.TextBoxFor(m => m.Email, new { placeholder = "Email", required = "", @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.Content)
+                        <br />
+                        @Html.TextAreaFor(m => m.Content, new { placeholder = "Nội dung", required = "", @class = "form-control" })
+                        <br />
+                        <div class="submit-btn">
+                            <input type="submit" value="SUBMIT" class="btn btn-lg btn-primary btn-block">
+                        </div>
+                    </form>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+    </div>
+    <!--contact-end-->
+    <!--map-start-->
+    <div class="map col-lg-5 col-md-5"">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d62642.091994113944!2d106.58554176416096!3d11.103631927519135!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3174cc2c33935867%3A0xe2087cfb1e0a8280!2zVGjhu5tpIEhvw6AsIELhur9uIEPDoXQsIELDrG5oIETGsMahbmcsIFZp4buHdCBOYW0!5e0!3m2!1svi!2s!4v1629534910428!5m2!1svi!2s" width="550" height="400" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+    </div>
+    <!--map-end-->
+
+</div>

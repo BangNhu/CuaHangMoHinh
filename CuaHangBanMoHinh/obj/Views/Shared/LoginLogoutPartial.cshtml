@@ -1,0 +1,24 @@
+﻿@model CuaHangBanMoHinh.Models.EL.KHACHHANG
+@{
+    var session = (KhachHangLogin)Session[CuaHangBanMoHinh.Common.CommonConstants.KHACHHANG_SESSION];
+}
+    @if (Session[CuaHangBanMoHinh.Common.CommonConstants.KHACHHANG_SESSION] == null) 
+    {
+    <li>
+        <a href="~/User/DangKy">
+            <span class="glyphicon glyphicon-user"></span>
+            Đăng ký
+        </a>
+    </li>
+    <li>
+        <a href="~/User/DangNhap?id=1">
+            <span class="glyphicon glyphicon-log-in"></span>
+            Đăng nhập
+        </a>
+    </li>
+}
+else //Giao diện Logout
+{
+    <li style="color:white"><a href="">Xin Chào: @session.TaiKhoan</a></li>
+    <li><a href="@Url.Action("DangXuat","User")"><span class="glyphicon glyphicon-log-out"></span> Đăng xuất</a></li>
+}

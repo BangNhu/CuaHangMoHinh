@@ -1,0 +1,130 @@
+﻿@model CuaHangBanMoHinh.Models.DangKyModel
+<style type="text/css">
+    #success_message {
+        display: none;
+    }
+</style>
+
+<div class="container">
+
+    <form class="well form-horizontal" action="~/User/DangKy" method="post" id="contact_form">
+        <fieldset>
+
+            <!-- Form Name -->
+            <legend><center><h2><b>ĐĂNG KÝ THÀNH VIÊN</b></h2></center></legend><br>
+
+            <!-- Text input-->
+            <div class="form-group">
+                <label class="col-md-4 control-label "></label>
+                <div class="col-md-8 inputGroupContainer">
+                    
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                       
+                   
+                </div>
+                
+            </div> 
+            <div class="form-group">
+                <label class="col-md-4 control-label">Họ và tên</label>
+                <div class="col-md-8 inputGroupContainer">
+                    <div class="input-group">
+                        <span class="input-group-addon"></i></span>
+                        @Html.TextBoxFor(model => model.HoTen, new { @class = "form-control", @placeholder = "Họ và tên" })
+                        @Html.ValidationMessageFor(model => model.HoTen, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+
+
+
+            <!-- Text input-->
+
+            <div class="form-group">
+                <label class="col-md-4 control-label">Tên đăng nhập</label>
+                <div class="col-md-8 inputGroupContainer">
+                    <div class="input-group">
+                        <span class="input-group-addon"></i></span>
+                        @Html.TextBoxFor(model => model.TaiKhoan, new { @class = "form-control", @placeholder = "Tên đăng nhập" })
+                        @Html.ValidationMessageFor(model => model.TaiKhoan, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+
+            <!-- Text input-->
+
+            <div class="form-group">
+                <label class="col-md-4 control-label">Mật khẩu</label>
+                <div class="col-md-8 inputGroupContainer">
+                    <div class="input-group">
+                        <span class="input-group-addon"></i></span>
+                        @Html.PasswordFor(model => model.MatKhau, new { @class = "form-control", @placeholder = "Mật khẩu" })
+                        @Html.ValidationMessageFor(model => model.MatKhau, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+
+            <!-- Text input-->
+
+            <div class="form-group">
+                <label class="col-md-4 control-label">Xác nhận mật khẩu</label>
+                <div class="col-md-8 inputGroupContainer">
+                    <div class="input-group">
+                        <span class="input-group-addon"></i></span>
+                        @Html.PasswordFor(model => model.XacNhanMatKhau, new { @class = "form-control", @placeholder = "Xác nhận mật khẩu" })
+                        @Html.ValidationMessageFor(model => model.XacNhanMatKhau, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+
+            <!-- Text input-->
+            <div class="form-group">
+                <label class="col-md-4 control-label">Email</label>
+                <div class="col-md-8 inputGroupContainer">
+                    <div class="input-group">
+                        <span class="input-group-addon"></i></span>
+                        @Html.TextBoxFor(model => model.Email, new { @class = "form-control", @placeholder = "Email", @type = "email" })
+                        @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- Text input-->
+
+            <div class="form-group">
+                <label class="col-md-4 control-label">Số điện thoại</label>
+                <div class="col-md-8 inputGroupContainer">
+                    <div class="input-group">
+                        <span class="input-group-addon"></i></span>
+                        @Html.TextBoxFor(model => model.DienThoai, new { @class = "form-control", @placeholder = "Điện thoại" })
+                    <p>@Html.ValidationMessageFor(model => model.DienThoai, "", new { @class = "text-danger" })</p>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-4 control-label">Địa chỉ</label>
+                <div class="col-md-8 inputGroupContainer">
+                    <div class="input-group">
+                        <span class="input-group-addon"></i></span>
+                        @Html.TextAreaFor(model => model.DiaChi, new { @class = "form-control", @placeholder = "Địa chỉ" })
+                        @Html.ValidationMessageFor(model => model.DiaChi, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+
+            <!-- Select Basic -->
+            <!-- Success message -->
+            <div class="alert alert-success" role="alert" id="success_message">Success <i class="glyphicon glyphicon-thumbs-up"></i> Success!.</div>
+
+            <!-- Button -->
+            <div class="form-group">
+                <label class="col-md-4 control-label"></label>
+                <div class="col-md-4">
+                    <br>
+                    &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<button type="submit" class="btn btn-warning">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspSUBMIT <span class="glyphicon glyphicon-send"></span>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</button>
+                </div>
+            </div>
+
+        </fieldset>
+    </form>
+</div>

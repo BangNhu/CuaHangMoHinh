@@ -1,0 +1,389 @@
+﻿@model CuaHangBanMoHinh.Models.EL.MOHINH
+@using CuaHangBanMoHinh.Models.EL
+@{
+    var session = (KhachHangLogin)Session[CuaHangBanMoHinh.Common.CommonConstants.KHACHHANG_SESSION];
+}
+@{
+    ViewBag.Title = "ChiTietMoHinh";
+    Layout = "~/Views/Shared/_LayoutUser.cshtml";
+    var dsSanPhamLienQuan = (List<CuaHangBanMoHinh.Models.EL.MOHINH>)ViewBag.SanPhamLienQuan;
+}
+
+<link rel="stylesheet" href="~/Content/style.css">
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.7.5/css/bootstrap-select.min.css">
+<script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.4/js/bootstrap-select.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js">
+<style type="text/css">
+
+
+    .card {
+        border: none;
+        overflow: hidden
+    }
+
+    .thumbnail_images ul {
+        list-style: none;
+        justify-content: center;
+        display: flex;
+        align-items: center;
+        margin-top: 10px
+    }
+
+        .thumbnail_images ul li {
+            margin: 5px;
+            padding: 10px;
+            border: 2px solid #eee;
+            cursor: pointer;
+            transition: all 0.5s
+        }
+
+            .thumbnail_images ul li:hover {
+                border: 2px solid #000
+            }
+
+    .main_image {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-bottom: 1px solid #eee;
+        height: 400px;
+        width: 100%;
+        overflow: hidden
+    }
+
+    .heart {
+        height: 39px;
+        width: 39px;
+        background-color: #eaeaea;
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center
+    }
+
+    .content p {
+        font-size: 14.3px;
+    }
+
+    .ratings span {
+        font-size: 15px;
+        margin-left: 12px
+    }
+
+    .colors {
+        margin-top: 5px
+    }
+
+        .colors ul {
+            list-style: none;
+            display: flex;
+            padding-left: 0px
+        }
+
+            .colors ul li {
+                height: 20px;
+                width: 20px;
+                display: flex;
+                border-radius: 50%;
+                margin-right: 10px;
+                cursor: pointer
+            }
+
+                .colors ul li:nth-child(1) {
+                    background-color: #6c704d
+                }
+
+                .colors ul li:nth-child(2) {
+                    background-color: #96918b
+                }
+
+                .colors ul li:nth-child(3) {
+                    background-color: #68778e
+                }
+
+                .colors ul li:nth-child(4) {
+                    background-color: #263f55
+                }
+
+                .colors ul li:nth-child(5) {
+                    background-color: black
+                }
+
+    .right-side {
+        position: relative
+    }
+
+    .search-option {
+        position: absolute;
+        background-color: #000;
+        overflow: hidden;
+        align-items: center;
+        color: #fff;
+        width: 200px;
+        height: 200px;
+        border-radius: 49% 51% 50% 50% / 68% 69% 31% 32%;
+        left: 30%;
+        bottom: -250px;
+        transition: all 0.5s;
+        cursor: pointer
+    }
+
+
+
+    .buttons .btn {
+        height: 50px;
+        width: 150px;
+        border-radius: 0px !important
+    }
+
+    .motasp {
+        font-size: 14.3px;
+        margin-bottom: 10px;
+        margin-top: 10px;
+    }
+
+    .tensp {
+        font-size: 27px;
+        font-weight: bold;
+    }
+
+    .p_ngaycapnhat {
+        text-align: center;
+        font-size: 15px;
+        font-style: italic;
+        margin-top: 15px;
+    }
+
+    .giaban {
+        margin-top: 15px;
+        margin-bottom: 15px;
+    }
+
+        .giaban p {
+            font-size: 23px;
+            display: inline;
+            color: #3785b0;
+            font-weight: bold;
+        }
+
+    .themvaogio {
+        line-height: 37px;
+        text-align: center;
+        color: white;
+        height: 40px;
+        width: 150px;
+        border-radius: 5px;
+        background-color: #404040;
+        text-decoration: none;
+        border: solid 1px #404040;
+        padding: 10px;
+    }
+
+        .themvaogio:hover {
+            color: #404040;
+            background-color: white;
+            transition: all 0.2s ease-in-out;
+        }
+
+    .khungbinhluan {
+        width: 100%;
+        height: 100px;
+        margin-top: 10px;
+        margin-bottom: 10px;
+        padding: 10px;
+        font-size: 13px;
+    }
+
+    label {
+        height: 25px;
+        font-size: 17px;
+    }
+
+    .a-dangnhapbinhluan {
+        font-weight: bold;
+    }
+
+    .input-button {
+        font-weight: bold;
+        font-size: 14px;
+        width: 150px;
+        height: 30px;
+        background-color: #338fff;
+        color: white;
+        border: solid 1.4px;
+        border-color: #0076ba;
+        margin-right: 10px;
+        box-shadow: 1px 1px 3px 1px #b0d3ff;
+        border-radius: 8px;
+    }
+
+        .input-button:hover {
+            background-color: whitesmoke;
+            color: #338fff;
+            border-color: #0076ba;
+            border-radius: 8px;
+            transition: all 0.1s ease-in-out;
+        }
+
+    .input-button-reset {
+        font-size: 12px;
+        width: 90px;
+        height: 27px;
+        margin-right: 15px;
+        border: solid 1px;
+        border-radius: 6px;
+    }
+
+        .input-button-reset:hover {
+            color: #454545;
+            transition: all 0.1s ease-in-out;
+            background-color: #e6e6e6;
+        }
+</style>
+<div class="card-wrapper">
+    <div class="card">
+        <!-- card left -->
+        <div class="product-imgs" style="margin-top:10px;">
+            <img src="~/Images/HinhLon/@Model.HinhLon"  alt="@Model.TenMH" />
+        </div>
+        <!-- card right -->
+        <div class="product-content">
+            <h2 class="product-title">@Model.TenMH</h2>
+          
+
+            <div class="product-price">
+                <!-- <p class="last-price">Số lượng hiện có: <span>$257.00</span></p>-->
+                <h3 class="new-price">Giá sản phẩm: <span>@Html.FormatValue(@Model.GiaBan, "{0:#,###,##0}") VNĐ</span></h3>
+            </div>
+
+            <div class="product-detail">
+                <h4>Mô tả: </h4>
+                <div class="motasach">
+                    <p>
+                        @Html.Raw(@Model.MoTa.ToString().Replace("\n", "</p><p>"))
+                    </p>
+                </div>
+            </div>
+
+            <div class="purchase-info">
+              
+                <p style="text-align:center;">
+                    <a href="@Url.Action("ThemGioHang","GioHang", new { mamh = Model.MaMH, url = Request.Url.ToString() })" class="btn btn-primary" role="button">
+                        <span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span> Thêm vào giỏ hàng
+                    </a>
+                </p>
+
+            </div>
+
+            <div class="social-links">
+                <p>Share At: </p>
+                <a href="#">
+                    <i class="fab fa-facebook-f"></i>
+                </a>
+                <a href="#">
+                    <i class="fab fa-twitter"></i>
+                </a>
+                <a href="#">
+                    <i class="fab fa-instagram"></i>
+                </a>
+                <a href="#">
+                    <i class="fab fa-whatsapp"></i>
+                </a>
+                <a href="#">
+                    <i class="fab fa-pinterest"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+@Html.Action("NhanXetPartial", "MoHinh")
+<div class="well">
+    @*@Html.TextBox("BinhLuan", null, new { @class = "khungbinhluan", @placeholder = "Cảm nhận của bạn về sản phẩm như thế nào?" })*@
+
+    @if (Session[CuaHangBanMoHinh.Common.CommonConstants.KHACHHANG_SESSION] == null)
+    {
+        <h4>Nhận xét về sản phẩm</h4>
+        <textarea class="khungbinhluan" type="text" name="BinhLuan" placeholder="Cảm nhận của bạn về sản phẩm như thế nào?" readonly></textarea>
+        <a href="~/User/DangNhap" class="a-dangnhapbinhluan"><i class="fa fa-sign-in"></i> Đăng nhập để bình luận</a>
+    }
+    else
+    {
+        <h3>Bình luận đánh giá sản phẩm với tên @session.TaiKhoan</h3>
+        <hr />
+        <table class="table-form" style="width:100%">
+
+            @using (Html.BeginForm("ChiTietMoHinh", "MoHinh"))
+            {
+                @Html.ValidationSummary(true)
+                <tr>
+                    <td style="font-size:13px">
+                        <p style="font-size:20px; font-weight:bold;margin-right:5px;">XẾP HẠNG SẢN PHẨM:</p>
+                        <input type="radio" id="age1" name="Rate" value="1">
+                        <label for="age1">
+                            1 sao <i class="fa fa-star" aria-hidden="true"></i>
+                            <i class="fa fa-star-o" aria-hidden="true"></i>
+                            <i class="fa fa-star-o" aria-hidden="true"></i>
+                            <i class="fa fa-star-o" aria-hidden="true"></i>
+                            <i class="fa fa-star-o" aria-hidden="true"></i>
+                        </label><br>
+                        <input type="radio" id="age2" name="Rate" value="2">
+                        <label for="age2">
+                            2 sao <i class="fa fa-star" aria-hidden="true"></i>
+                            <i class="fa fa-star" aria-hidden="true"></i>
+                            <i class="fa fa-star-o" aria-hidden="true"></i>
+                            <i class="fa fa-star-o" aria-hidden="true"></i>
+                            <i class="fa fa-star-o" aria-hidden="true"></i>
+                        </label><br>
+                        <input type="radio" id="age3" name="Rate" value="3">
+                        <label for="age3">
+                            3 sao <i class="fa fa-star" aria-hidden="true"></i>
+                            <i class="fa fa-star" aria-hidden="true"></i>
+                            <i class="fa fa-star" aria-hidden="true"></i>
+                            <i class="fa fa-star-o" aria-hidden="true"></i>
+                            <i class="fa fa-star-o" aria-hidden="true"></i>
+                        </label><br>
+                        <input type="radio" id="age4" name="Rate" value="4">
+                        <label for="age4">
+                            4 sao <i class="fa fa-star" aria-hidden="true"></i>
+                            <i class="fa fa-star" aria-hidden="true"></i>
+                            <i class="fa fa-star" aria-hidden="true"></i>
+                            <i class="fa fa-star" aria-hidden="true"></i>
+                            <i class="fa fa-star-o" aria-hidden="true"></i>
+                        </label><br>
+                        <input type="radio" id="age5" name="Rate" value="5" checked>
+                        <label for="age5">
+                            5 sao
+                            <i class="fa fa-star" aria-hidden="true"></i>
+                            <i class="fa fa-star" aria-hidden="true"></i>
+                            <i class="fa fa-star" aria-hidden="true"></i>
+                            <i class="fa fa-star" aria-hidden="true"></i>
+                            <i class="fa fa-star" aria-hidden="true"></i>
+                        </label><br>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td style="display:none"><input type="text" size="70" name="MaMH" value="@Model.MaMH" class="nhap-thong-tin-masp" readonly /></td>
+                    <td>@Html.TextArea("BinhLuan", null, new { @class = "khungbinhluan", @placeholder = "Cảm nhận của bạn về sản phẩm như thế nào?", @required ="" }) @ViewData["err1"]</td>
+
+                </tr>
+                <tr>
+                    <td>
+                        <input type="submit" value="ĐĂNG BÌNH LUẬN" class="input-button " required />
+                        <input type="reset" value="Nhập lại" class="input-button-reset" />
+                    </td>
+                </tr>
+            }
+        </table>
+    }
+</div>
+@Html.Action("SanPhamLienQuanPartial", "MoHinh")
+
+
+
+
+
+
+
+
+

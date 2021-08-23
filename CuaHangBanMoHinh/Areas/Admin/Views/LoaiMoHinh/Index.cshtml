@@ -1,0 +1,85 @@
+﻿@model PagedList.IPagedList<CuaHangBanMoHinh.Models.EL.LOAIMOHINH>
+@using PagedList.Mvc;
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+<!-- Begin Page Content -->
+<div class="container-fluid">
+
+    <!-- Page Heading -->
+    <h2>DANH SÁCH LOẠI MÔ HÌNH</h2>
+
+    <!-- DataTales Example -->
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <a href="/Admin/LoaiMoHinh/Create">Tạo mới</a>
+            <div class="TimKiem">
+                @using (Html.BeginForm("Index", "LoaiMoHinh", FormMethod.Get))
+                {
+                    <div class="row ">
+                        <div class="col-sm-12 col-md-7 ">
+                        </div>
+                        <div class="col-sm-12 col-md-3">
+                            <input type="text" name="timKiem" value="@ViewBag.TimKiem" class="form-control form-control-sm" />
+                        </div>
+                        <div class="col-sm-12 col-md-2">
+                            <button type="submit" class="btn btn-info">Tìm Kiếm</button>
+                        </div>
+
+
+                    </div>
+                }
+            </div>
+        </div>
+        
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th>Chọn </th>
+                            <th>Tên chủ đề</th>
+
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr id="row_@item.MaLoaiMH">
+                                <td>
+                                    <a href="/Admin/LoaiMoHinh/Detail/@item.MaLoaiMH">Chi tiết</a> |
+                                    <a href="/Admin/LoaiMoHinh/Edit/@item.MaLoaiMH">Sửa</a> |
+                                    @Ajax.ActionLink("Xoá", "Delete", new { @id = item.MaLoaiMH }, new AjaxOptions
+                       {
+                           Confirm = "Bạn có muốn xoá bản ghi này?",
+                           OnComplete = "$('#row_" + @item.MaLoaiMH + "').remove()",
+                           HttpMethod = "Delete"
+                       })
+                                </td>
+                                <td>@item.TenMH</td>
+                            </tr>
+
+                        }
+
+
+                    </tbody>
+                </table>
+                <div class="MenuTrang">
+                    @Html.PagedListPager(Model, page => Url.Action("Index", new { page = page, @timKiem = @ViewBag.TimKiem }))
+                </div>
+                <style>
+                    .MenuTrang {
+                        display: inline;
+                        text-align: center;
+                    }
+                </style>
+            </div>
+        </div>
+    </div>
+
+</div>
+<!-- /.container-fluid -->
+
+    

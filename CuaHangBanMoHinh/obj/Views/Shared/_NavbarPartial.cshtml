@@ -1,0 +1,54 @@
+﻿@model IEnumerable<CuaHangBanMoHinh.Models.EL.LOAIMOHINH>
+<div class="navbar navbar-inverse">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-12">
+
+                <div class="navbar-header">
+                    <button class="navbar-toggle" data-target="#mobile_menu" data-toggle="collapse"><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button>
+                    <a href="~/MoHinh/Index" class="navbar-brand">TAKI SHOP</a>
+                </div>
+
+                <div class="navbar-collapse collapse" id="mobile_menu">
+                    <ul class="nav navbar-nav">
+                        <li class="active"><a href="~/MoHinh/Index">Trang Chủ</a></li>
+                        <li>
+                            <a href="~/MoHinh/TatCaSanPham" class="dropdown-toggle" data-toggle="dropdown">Danh mục <span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                @foreach (var danhmuc in Model)
+                                {
+                                    <li>@Html.ActionLink(danhmuc.TenMH, "SanPhamTheoDanhMuc", new { idLoaiMH = danhmuc.MaLoaiMH }, "MoHinh")</li>
+                                }
+
+
+                            </ul>
+                        </li>
+                        <li><a href="~/LienHe/GioiThieu">Giới thiệu</a></li>
+                        <li><a href="~/LienHe/Contact">Liên hệ</a></li>
+                    </ul>
+                    <ul class="nav navbar-nav">
+                        <li>
+                            @using (Html.BeginForm("TimKiem", "MoHinh", FormMethod.Get, new { @class = "navbar-form navbar-right", @role = "search" }))
+                            {
+
+                                <div class="form-group">
+                                    <input type="text" class="form-control" placeholder="Tìm kiếm">
+                                </div>
+                                <button type="submit" class="btn btn-default">Tìm</button>
+
+                            }
+                        </li>
+                    </ul>
+
+                    <ul class="nav navbar-nav navbar-right">
+                        @Html.Action("LoginLogout", "MoHinh")
+                        @Html.Action("GioHangPartial", "GioHang")
+
+                    </ul>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="~/Scripts/js/baseController.js"></script>

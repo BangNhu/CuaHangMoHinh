@@ -1,0 +1,38 @@
+﻿
+@model IEnumerable<CuaHangBanMoHinh.Models.EL.BINHLUAN>
+@using CuaHangBanMoHinh.Models.EL
+@{
+    var session = (KhachHangLogin)Session[CuaHangBanMoHinh.Common.CommonConstants.KHACHHANG_SESSION];
+}
+
+
+<div class="well">
+    @*@Html.TextBox("BinhLuan", null, new { @class = "khungbinhluan", @placeholder = "Cảm nhận của bạn về sản phẩm như thế nào?" })*@
+
+    @if (Session[CuaHangBanMoHinh.Common.CommonConstants.KHACHHANG_SESSION] == null) //Giao diện Login
+    {
+        <h4>Nhận xét về sản phẩm</h4>
+        <input class="khungbinhluan" type="text" name="BinhLuan" placeholder="Cảm nhận của bạn về sản phẩm như thế nào?" />
+        <a href="~/User/DangNhap" class="a-dangnhapbinhluan"><i class="fa fa-sign-in"></i> Đăng nhập để bình luận</a>
+    }
+    else
+    {
+        <h4>Bình luận đánh giá với tư cách là @session.TaiKhoan</h4>
+        <table align="center" class="table-form">
+
+            @using (Html.BeginForm("BinhLuanPartial", "MoHinh"))
+            {
+                @Html.ValidationSummary(true)
+                <tr>
+                    <td>@Html.TextBox("BinhLuan", null, new { @class = "khungbinhluan", @placeholder = "Cảm nhận của bạn về sản phẩm như thế nào?" })</td>
+                </tr>
+                <tr>
+                    <td>
+                        <input type="submit" value="ĐĂNG BÌNH LUẬN" class="input-button" />
+                        <input type="reset" value="Nhập lại" class="input-button-reset" />@ViewData["err1"]
+                    </td>
+                </tr>
+            }
+        </table>
+    }
+</div>

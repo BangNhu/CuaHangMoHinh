@@ -1,0 +1,80 @@
+﻿
+<style type="text/css">
+    .fa-star {
+        color: #e6b105
+    }
+
+    .fa-star-o {
+        color: #e6b105
+    }
+
+    .DanhGia {
+        font-size: 13px;
+        box-shadow: 1px 1px 10px 1px #b0b0b0;
+        padding: 30px;
+        padding-bottom: 10px;
+        background-color: #f5f5f5;
+    }
+</style>
+<div class="DanhGia">
+    <h2>ĐÁNH GIÁ SẢN PHẨM</h2>
+    <hr />
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                <p>Khách hàng có mã @item.MaKH đã nhận xét:</p>
+            </td>
+            <td>
+                <p>@item.ThoiGianDang</p>
+            </td>
+            <td>
+                @if (item.Rating == 5)
+                {
+                    <i class="fa fa-star" aria-hidden="true"></i>
+                    <i class="fa fa-star" aria-hidden="true"></i>
+                    <i class="fa fa-star" aria-hidden="true"></i>
+                    <i class="fa fa-star" aria-hidden="true"></i>
+                    <i class="fa fa-star" aria-hidden="true"></i>
+                }
+                else if (item.Rating == 4)
+                {
+                    <i class="fa fa-star" aria-hidden="true"></i>
+                    <i class="fa fa-star" aria-hidden="true"></i>
+                    <i class="fa fa-star" aria-hidden="true"></i>
+                    <i class="fa fa-star" aria-hidden="true"></i>
+                    <i class="fa fa-star-o" aria-hidden="true"></i>
+                }
+                else if (item.Rating == 3)
+                {
+                    <i class="fa fa-star" aria-hidden="true"></i>
+                    <i class="fa fa-star" aria-hidden="true"></i>
+                    <i class="fa fa-star" aria-hidden="true"></i>
+                    <i class="fa fa-star-o" aria-hidden="true"></i>
+                    <i class="fa fa-star-o" aria-hidden="true"></i>
+                }
+                else if (item.Rating == 2)
+                {
+                    <i class="fa fa-star" aria-hidden="true"></i>
+                    <i class="fa fa-star" aria-hidden="true"></i>
+                    <i class="fa fa-star-o" aria-hidden="true"></i>
+                    <i class="fa fa-star-o" aria-hidden="true"></i>
+                    <i class="fa fa-star-o" aria-hidden="true"></i>
+                }
+                else
+                {
+                    <i class="fa fa-star" aria-hidden="true"></i>
+                    <i class="fa fa-star-o" aria-hidden="true"></i>
+                    <i class="fa fa-star-o" aria-hidden="true"></i>
+                    <i class="fa fa-star-o" aria-hidden="true"></i>
+                    <i class="fa fa-star-o" aria-hidden="true"></i>
+                }
+
+            </td>
+            <td>
+                <p>@item.NoiDung</p>
+            </td>
+        </tr>
+    }
+</div>
+

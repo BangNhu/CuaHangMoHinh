@@ -1,0 +1,25 @@
+﻿@model CuaHangBanMoHinh.Models.EL.LOAIMOHINH
+
+@{
+    ViewBag.Title = "DeTail";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<div>
+    <h4>Chi tiết loại mô hình</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.TenMH)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TenMH)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.MaLoaiMH }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
